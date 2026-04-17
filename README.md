@@ -4,4 +4,4 @@ Chromium based browsers are having issues with clearing the full cache. They're 
 
 Yes. The codes a mess. Did this quick and dirty over about 45 minutes total between other jobs. Will clean it up and make it nicer and more effecient later.
 
-Just unzip, Click Run anyways on the smart screen prompt. Click yes to UAC prompt to run as admin (It needs this to close out the proccesses browsers leave running when you close them). Then follow the steps listed in the application.
+Just compile and run or unzip the provided release and run CacheKiller.exe. Click Run anyways on the smart screen prompt (Not using my code signing certificate on something with such a broad license). Click yes to UAC prompt to run as admin (It needs this to close out the proccesses browsers leave running when you close them). Then follow the steps listed in the application.

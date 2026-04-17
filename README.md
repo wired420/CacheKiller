@@ -1,6 +1,6 @@
 CacheKiller
 
-Chromium based browsers are having issues with clearing the full cache. They're honoring CacheExpires times even after the cache has been deleted, and attempting to redownload old files that no longer exist. They've taken the cacheing too far. Since I was already working on it. Decided to include browsers I've had no problems with, but others have. Other browsers made by included in the future.
+Chromium based browsers are having issues with clearing the full cache. They're honoring CacheExpires times even after the cache has been deleted, and attempting to redownload old files that no longer exist. They've taken the cacheing too far. Since I was already working on it. Decided to include browsers I've had no problems with, but others have. Other browsers may be included in the future.
 
 Yes. The codes a mess. Did this quick and dirty over about 45 minutes total between other jobs. Will clean it up and make it nicer and more effecient later.
 

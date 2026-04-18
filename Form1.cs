@@ -10,16 +10,18 @@ namespace CacheKiller
         bool firstLine = true;
         List<string> browserList = [];
 
+        private readonly static bool brave = Directory.Exists(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData).ToString() + "\\BraveSoftware\\Brave-Browser\\");
+        private readonly static bool chrome = Directory.Exists(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData).ToString() + "\\Google\\Chrome\\");
+        private readonly static bool edge = Directory.Exists(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData).ToString() + "\\Microsoft\\Edge\\");
+        private readonly static bool firefox = Directory.Exists(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData).ToString() + "\\Mozilla\\Firefox\\");
+        private readonly static bool opera = Directory.Exists(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData).ToString() + "\\Opera Software\\Opera Stable\\");
+        private readonly static bool operagx = Directory.Exists(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData).ToString() + "\\Opera Software\\Opera GX Stable\\");
+
         public Form1()
         {
             InitializeComponent();
-        }
-
-        // Scanner
-        private void button1_Click(object sender, EventArgs e)
-        {
             toolStripStatusLabel1.Text = "Status: Scanning for browsers";
-            string[] item = { "Bravesoft Brave", "Google Chrome", "Microsoft Edge", "Mozilla Firefox", "Opera", "OperaGX" };
+            string[] item = { "Brave", "Chrome", "Edge", "Firefox", "OperaGX", "Opera" };
             foreach (string browser in item)
             {
                 IsProgramInstalled(browser);
@@ -31,90 +33,44 @@ namespace CacheKiller
         public bool IsProgramInstalled(string programDisplayName)
         {
 
-            bool edge = false;
-            if (File.Exists("C:\\Program Files(x86)\\Microsoft\\Edge\\Application\\msedge.exe") || File.Exists("C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe"))
-            {
-                edge = true;
-            }
-            var brave = Registry.LocalMachine.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\App Paths\\brave.exe");
-            var opera = Directory.Exists(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData).ToString() + "\\Opera Software\\Opera Stable\\");
-            var operagx = Directory.Exists(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData).ToString() + "\\Opera Software\\Opera GX Stable\\");
             OutputToLog(string.Format("Checking install status of: {0}", programDisplayName));
-            if (programDisplayName == "Bravesoft Brave" && brave != null)
+            if (programDisplayName == "Brave" && brave)
             {
-                OutputToLog("Browser Found: Bravesoft Brave");
-                CheckSwitch("Brave");
+                OutputToLog(string.Format("Browser Found: {0}", programDisplayName));
+                checkBoxBrave.Enabled = true;
                 return true;
             }
-            if (programDisplayName == "Microsoft Edge" && edge)
+            if (programDisplayName == "Chrome" && chrome)
             {
-                OutputToLog("Browser Found: Microsoft Edge");
-                CheckSwitch("Edge");
+                OutputToLog(string.Format("Browser Found: {0}", programDisplayName));
+                checkBoxChrome.Enabled = true;
+                return true;
+            }
+            if (programDisplayName == "Edge" && edge)
+            {
+                OutputToLog(string.Format("Browser Found: {0}", programDisplayName));
+                checkBoxEdge.Enabled = true;
+                return true;
+            }
+            if (programDisplayName == "Firefox" && firefox)
+            {
+                OutputToLog(string.Format("Browser Found: {0}", programDisplayName));
+                checkBoxFirefox.Enabled = true;
                 return true;
             }
             if (programDisplayName == "Opera" && opera)
             {
-                OutputToLog("Broser Found: Opera Stable");
-                CheckSwitch("Opera");
+                OutputToLog(string.Format("Browser Found: {0}", programDisplayName));
+                checkBoxOpera.Enabled = true;
                 return true;
             }
             if (programDisplayName == "OperaGX" && operagx)
             {
-                OutputToLog("Broser Found: Opera GX Stable");
-                CheckSwitch("OperaGX");
+                OutputToLog(string.Format("Browser Found: {0}", programDisplayName));
+                checkBoxOperaGX.Enabled = true;
                 return true;
             }
-            foreach (var item in Registry.LocalMachine.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall").GetSubKeyNames())
-            {
-                if (item == null)
-                {
-                    continue;
-                }
-
-                object programName = Registry.LocalMachine.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\" + item).GetValue("DisplayName");
-                if (programName != null)
-                {
-                    if (programName.ToString().Contains(programDisplayName))
-                    {
-                        OutputToLog(string.Format("Browser Found: {0}", programName));
-                        CheckSwitch(programName.ToString());
-                        return true;
-                    }
-                }
-                else
-                {
-                    continue;
-                }
-            }
             return false;
-        }
-
-        private void CheckSwitch(string programName)
-        {
-            if (programName.Contains("Brave"))
-            {
-                checkBoxBrave.Enabled = true;
-            }
-            else if (programName.Contains("Chrome"))
-            {
-                checkBoxChrome.Enabled = true;
-            }
-            else if (programName.Contains("Edge"))
-            {
-                checkBoxEdge.Enabled = true;
-            }
-            else if (programName.Contains("Firefox"))
-            {
-                checkBoxFirefox.Enabled = true;
-            }
-            else if (programName.Contains("OperaGX"))
-            {
-                checkBoxOperaGX.Enabled = true;
-            }
-            else if (programName.Contains("Opera"))
-            {
-                checkBoxOpera.Enabled = true;
-            }
         }
 
         private void CheckStatus()
@@ -151,36 +107,6 @@ namespace CacheKiller
                 firstLine = false;
             }
             richTextBox1.ScrollToCaret();
-        }
-
-        private void checkBoxBrave_CheckedChanged(object sender, EventArgs e)
-        {
-            CheckStatus();
-        }
-
-        private void checkBoxChrome_CheckedChanged(object sender, EventArgs e)
-        {
-            CheckStatus();
-        }
-
-        private void checkBoxEdge_CheckedChanged(object sender, EventArgs e)
-        {
-            CheckStatus();
-        }
-
-        private void checkBoxFirefox_CheckedChanged(object sender, EventArgs e)
-        {
-            CheckStatus();
-        }
-
-        private void checkBoxOpera_CheckedChanged(object sender, EventArgs e)
-        {
-            CheckStatus();
-        }
-
-        private void checkBoxOperaGX_CheckedChanged(object sender, EventArgs e)
-        {
-            CheckStatus();
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -274,18 +200,6 @@ namespace CacheKiller
             }
         }
 
-        private void DeleteBrowser(string[] del, string browser)
-        {
-            foreach (string i in del)
-            {
-                if (i != null && Directory.Exists(i))
-                {
-                    OutputToLog(string.Format("{0}: Deleting {1}", browser, i));
-                    Directory.Delete(i, true);
-                }
-            }
-        }
-
         private void KillBrowser(string browser)
         {
             foreach (var process in Process.GetProcessesByName(browser))
@@ -304,6 +218,18 @@ namespace CacheKiller
             }
         }
 
+        private void DeleteBrowser(string[] del, string browser)
+        {
+            foreach (string i in del)
+            {
+                if (i != null && Directory.Exists(i))
+                {
+                    OutputToLog(string.Format("{0}: Deleting {1}", browser, i));
+                    Directory.Delete(i, true);
+                }
+            }
+        }
+
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Application.Exit();
@@ -312,6 +238,36 @@ namespace CacheKiller
         private void githubToolStripMenuItem_Click(object sender, EventArgs e)
         {
             using var _ = Process.Start(new ProcessStartInfo { FileName = "https://github.com/wired420/CacheKiller", UseShellExecute = true });
+        }
+        
+        private void checkBoxBrave_CheckedChanged(object sender, EventArgs e)
+        {
+            CheckStatus();
+        }
+
+        private void checkBoxChrome_CheckedChanged(object sender, EventArgs e)
+        {
+            CheckStatus();
+        }
+
+        private void checkBoxEdge_CheckedChanged(object sender, EventArgs e)
+        {
+            CheckStatus();
+        }
+
+        private void checkBoxFirefox_CheckedChanged(object sender, EventArgs e)
+        {
+            CheckStatus();
+        }
+
+        private void checkBoxOpera_CheckedChanged(object sender, EventArgs e)
+        {
+            CheckStatus();
+        }
+
+        private void checkBoxOperaGX_CheckedChanged(object sender, EventArgs e)
+        {
+            CheckStatus();
         }
     }
 }

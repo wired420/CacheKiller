@@ -33,9 +33,6 @@
             exitToolStripMenuItem = new ToolStripMenuItem();
             helpToolStripMenuItem = new ToolStripMenuItem();
             githubToolStripMenuItem = new ToolStripMenuItem();
-            groupBox1 = new GroupBox();
-            button1 = new Button();
-            label1 = new Label();
             groupBox2 = new GroupBox();
             label3 = new Label();
             checkBoxOperaGX = new CheckBox();
@@ -53,7 +50,6 @@
             statusStrip1 = new StatusStrip();
             toolStripStatusLabel1 = new ToolStripStatusLabel();
             menuStrip1.SuspendLayout();
-            groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             groupBox3.SuspendLayout();
             groupBox4.SuspendLayout();
@@ -93,41 +89,9 @@
             // githubToolStripMenuItem
             // 
             githubToolStripMenuItem.Name = "githubToolStripMenuItem";
-            githubToolStripMenuItem.Size = new Size(180, 22);
+            githubToolStripMenuItem.Size = new Size(110, 22);
             githubToolStripMenuItem.Text = "&Github";
             githubToolStripMenuItem.Click += githubToolStripMenuItem_Click;
-            // 
-            // groupBox1
-            // 
-            groupBox1.Controls.Add(button1);
-            groupBox1.Controls.Add(label1);
-            groupBox1.Location = new Point(12, 27);
-            groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(502, 114);
-            groupBox1.TabIndex = 1;
-            groupBox1.TabStop = false;
-            groupBox1.Text = "Step 1";
-            // 
-            // button1
-            // 
-            button1.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            button1.Location = new Point(179, 46);
-            button1.Name = "button1";
-            button1.Size = new Size(125, 50);
-            button1.TabIndex = 1;
-            button1.Text = "Click To Scan";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            label1.Location = new Point(156, 19);
-            label1.Name = "label1";
-            label1.Size = new Size(170, 15);
-            label1.TabIndex = 0;
-            label1.Text = "Scan for supported browsers.";
             // 
             // groupBox2
             // 
@@ -140,12 +104,12 @@
             groupBox2.Controls.Add(checkBoxBrave);
             groupBox2.Controls.Add(label2);
             groupBox2.Enabled = false;
-            groupBox2.Location = new Point(12, 147);
+            groupBox2.Location = new Point(12, 27);
             groupBox2.Name = "groupBox2";
             groupBox2.Size = new Size(502, 148);
             groupBox2.TabIndex = 2;
             groupBox2.TabStop = false;
-            groupBox2.Text = "Step 2";
+            groupBox2.Text = "Browsers";
             // 
             // label3
             // 
@@ -243,12 +207,12 @@
             groupBox3.Controls.Add(button2);
             groupBox3.Controls.Add(label4);
             groupBox3.Enabled = false;
-            groupBox3.Location = new Point(12, 301);
+            groupBox3.Location = new Point(12, 181);
             groupBox3.Name = "groupBox3";
             groupBox3.Size = new Size(502, 123);
             groupBox3.TabIndex = 3;
             groupBox3.TabStop = false;
-            groupBox3.Text = "Step 3";
+            groupBox3.Text = "CacheKiller";
             // 
             // button2
             // 
@@ -274,7 +238,7 @@
             // groupBox4
             // 
             groupBox4.Controls.Add(richTextBox1);
-            groupBox4.Location = new Point(12, 430);
+            groupBox4.Location = new Point(12, 310);
             groupBox4.Name = "groupBox4";
             groupBox4.Size = new Size(502, 260);
             groupBox4.TabIndex = 4;
@@ -294,7 +258,7 @@
             // statusStrip1
             // 
             statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1 });
-            statusStrip1.Location = new Point(0, 706);
+            statusStrip1.Location = new Point(0, 584);
             statusStrip1.Name = "statusStrip1";
             statusStrip1.Size = new Size(526, 22);
             statusStrip1.TabIndex = 5;
@@ -310,12 +274,11 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(526, 728);
+            ClientSize = new Size(526, 606);
             Controls.Add(statusStrip1);
             Controls.Add(groupBox4);
             Controls.Add(groupBox3);
             Controls.Add(groupBox2);
-            Controls.Add(groupBox1);
             Controls.Add(menuStrip1);
             FormBorderStyle = FormBorderStyle.Fixed3D;
             MainMenuStrip = menuStrip1;
@@ -324,8 +287,6 @@
             Text = "CacheKiller";
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
-            groupBox1.ResumeLayout(false);
-            groupBox1.PerformLayout();
             groupBox2.ResumeLayout(false);
             groupBox2.PerformLayout();
             groupBox3.ResumeLayout(false);
@@ -343,9 +304,6 @@
         private ToolStripMenuItem fileToolStripMenuItem;
         private ToolStripMenuItem exitToolStripMenuItem;
         private ToolStripMenuItem helpToolStripMenuItem;
-        private GroupBox groupBox1;
-        private Button button1;
-        private Label label1;
         private GroupBox groupBox2;
         private Label label2;
         private Label label3;
